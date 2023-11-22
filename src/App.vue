@@ -86,7 +86,8 @@ export default {
 	},
 	methods: {
 		addNote(note) {
-			this.notes.push(note);
+			// заметка добавляется в начало списка и остается наверху, видна сразу после добавления
+			this.notes.unshift(note);
 		},
 
 		updateModalVisibility(value) {
