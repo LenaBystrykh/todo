@@ -5,7 +5,7 @@
 			Добавить заметку
 		</button>
 		<div class="notes-container">
-			<div v-for="note in notesNewFirst" :key="note.id">
+			<div v-for="note in notes" :key="note.id">
 				<!-- при нажатии на иконку всплывает подтверждение удаления заметки, при нажатии в любом другом месте карточки открывается модальное окно редактирования заметки -->
 				<TodoItem :note="note" @editNote="openEditModal" @deleteNote="openDeleteModal" />
 			</div>
@@ -75,48 +75,14 @@ export default {
 						{id: 14, done: false, task: 'Пройти собеседование'},
 						{id: 15, done: false, task: 'Порадоваться'},
 					]
-				},
-				{
-					id: 6,
-					title: 'Реализовать изменение заметок',
-					todos: [
-						{id: 7, done: true, task: 'Сверстать модалку'},
-						{id: 8, done: true, task: 'Реализовать открытие модалки по нажатию на тудушку'},
-						{id: 9, done: true, task: 'Реализовать обновление тудушки'},
-					]
-				},
-				{
-					id: 7,
-					title: 'Реализовать удаление заметок',
-					todos: [
-						{id: 10, done: true, task: 'Сверстать модалку подтверждения'},
-						{id: 11, done: true, task: 'Реализовать открытие/закрытие модалки'},
-						{id: 12, done: true, task: 'Реализовать удаление тудушки из списка'},
-					]
-				},
-				{
-					id: 8,
-					title: 'Реализовать трудоустройство было бы круто!',
-					todos: [
-						{id: 13, done: true, task: 'Выполнить тестовое'},
-						{id: 14, done: false, task: 'Пройти собеседование'},
-						{id: 15, done: false, task: 'Порадоваться'},
-					]
 				}
 			],
+			sortedNotes: [],
 			modalVisibility: false,
 			deleteModalVisibility: false,
 			// переменная для хранения выбранной заметки для реализации редактирования и удаления
 			chosenNote: null
 		}
-	},
-	computed: {
-		/* сортировка списка заметок таким образом, чтобы последние добавленные были вверху
-		здесь копируются объекты массива, а не ссылки на них */
-		notesNewFirst() {
-			let newNotes = this.notes.map(note => {return {...note, todos: note.todos.map(todo => {return {...todo}}) }})
-            return newNotes.reverse();
-        }
 	},
 	methods: {
 		addNote(note) {

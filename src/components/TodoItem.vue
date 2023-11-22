@@ -44,6 +44,7 @@ export default {
     padding: 16px;
     border-radius: 16px;
     margin-bottom: 16px;
+    cursor: pointer;
 
     &__header {
         display: flex;
