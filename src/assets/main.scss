@@ -1,0 +1,135 @@
+@import "./_media.scss";
+
+.title {
+    font-size: 24px;
+    margin-bottom: 16px;
+    font-weight: bold;
+    /* заголовок займет всё свободное место, не сжимая иконку удаления */
+    flex: 1;
+}
+
+.checker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #2c3e50;
+    transition: 0.4s;
+
+    &.done {
+        background-color: #2d44c5;
+        border: none;
+        &::before {
+            content: url("@/assets/checker.svg");
+        }
+    }
+}
+
+.todo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    /* для более удобных нажатий с мобильных устройств увеличиваю расстояние между пунктами */
+    @include desktop {
+        margin-top: 4px;
+    }
+
+    @include tablet {
+        min-height: 30px;
+        margin-top: 4px;
+    }
+
+    @include phone {
+        min-height: 40px;
+        margin-top: 8px;
+    }
+}
+
+.task {
+    font-size: 16px;
+    font-weight: 400;
+
+    
+    /* текст пункта займет всё свободное место, не сжимая чекбокс */
+    flex: 1;
+
+    /* для более удобных нажатий с мобильных устройств увеличено расстояние между пунктами */
+    @include desktop {
+        margin-left: 8px;
+    }
+
+    @include tablet {
+        margin-left: 12px;
+    }
+
+    @include phone {
+        margin-left: 12px;
+    }
+}
+
+.base-button {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    margin-bottom: 16px;
+    height: 60px;
+	color: #2d44c5;
+	font-size: 16px;
+	border: 1px dashed #2d44c5;
+	background: none;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: 0.3s;
+
+	svg {
+		margin-right: 8px;
+	}
+
+    &:hover {
+        color: white;
+        border: none;
+        background: #2d44c5a6;
+    }
+}
+
+.modal-bg {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.modal {
+	display: flex;
+    flex-direction: column;
+	justify-content: space-around;
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px;
+    z-index: 10;
+
+    /* выравнивание по центру экрана */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include desktop {
+        width: 30%;
+    }
+
+    @include tablet {
+        width: 60%;
+        max-width: 500px;
+    }
+
+    @include phone {
+        width: 80%;
+        min-width: 280px;
+    }
+}
